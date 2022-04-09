@@ -13,6 +13,8 @@
 # * permissions and limitations under the License.
 # */
 
+# Part 1 code to demostrate GreenGrass devices could communicate with cloud
+# Modified code to print Elapsed Time message, otherwise unchanged
 
 import os
 import sys
