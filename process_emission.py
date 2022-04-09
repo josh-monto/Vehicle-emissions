@@ -1,3 +1,4 @@
+#Lambda function for processing CO2 data
 import json
 import logging
 import sys
