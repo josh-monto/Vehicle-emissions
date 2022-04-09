@@ -1,3 +1,4 @@
+#Initial edit of emulator-client code, even numbered vehicles subscribe to messages from odd numbered ones
 # Import SDK packages
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 import time
