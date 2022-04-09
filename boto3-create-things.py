@@ -1,3 +1,4 @@
+#Part 1 code for creating 50 things
 ################################################### Connecting to AWS
 import boto3
 
