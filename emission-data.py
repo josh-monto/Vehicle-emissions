@@ -27,7 +27,7 @@ class MQTTClient:
         self.device_id = str(device_id)
         self.state = 0
         self.client = AWSIoTMQTTClient(self.device_id)
-        #TODO 2: modify your broker address and credentials, make sure address is correct endpoint and correct root CA name is written
+        #Broker address and credentials, make sure address is correct endpoint and correct root CA name is written
         self.client.configureEndpoint("a34g9lmiyjjon2-ats.iot.us-west-2.amazonaws.com", 8883)
         self.client.configureCredentials("certs/Amazon-root-CA-1.pem", key, cert)
         self.client.configureOfflinePublishQueueing(-1)  # Infinite offline Publish queueing
@@ -58,7 +58,7 @@ class MQTTClient:
 
 
     def publish(self, data):
-        #TODO4: fill in this function for your publish
+        # Publish to topic
         vehicle_no = "vehicle{}".format(self.device_id)
         data = data.to_dict()
         CO2_data = data["vehicle_CO2"]
@@ -86,7 +86,7 @@ while True:
     x = input()
     if x == "s":
         for i,c in enumerate(clients):
-            c.publish(data[i])
+            c.publish(data[i]) #send data for current thing to publish function
 
     elif x == "d":
         for c in clients:
