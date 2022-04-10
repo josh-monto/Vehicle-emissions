@@ -7,14 +7,9 @@ import datetime
 import numpy as np
 from threading import Lock 
 
-
-#TODO 1: modify the following parameters
 #Starting and end index, st is 0, end is number of devices
 device_st = 0
 device_end = 50
-
-#Path to the dataset
-data_path = "data/vehicle{}.csv"
 
 #Path to certificates
 certificate_formatter = "certs/vehicle{}/vehicle{}.certificate.pem"
@@ -27,7 +22,7 @@ class MQTTClient:
         self.device_id = str(device_id)
         self.state = 0
         self.client = AWSIoTMQTTClient(self.device_id)
-        #TODO 2: modify your broker address and credentials, make sure address is correct endpoint and correct root CA name is written
+        # Broker address and credentials, make sure address is correct endpoint and correct root CA name is written
         self.client.configureEndpoint("a34g9lmiyjjon2-ats.iot.us-west-2.amazonaws.com", 8883)
         self.client.configureCredentials("certs/Amazon-root-CA-1.pem", key, cert)
         self.client.configureOfflinePublishQueueing(-1)  # Infinite offline Publish queueing
@@ -37,7 +32,7 @@ class MQTTClient:
         self.client.onMessage = self.customOnMessage
         
     def customOnMessage(self,message):
-        #TODO3: fill in the function to show your received message
+        #Show received message
         print("Vehicle_{} received -".format(self.device_id), end = " ")
         data = str(message.payload.decode("utf-8","ignore"))
         print(data)
@@ -47,32 +42,23 @@ class MQTTClient:
 
     # Suback callback
     def customSubackCallback(self,mid, data):
-        #You don't need to write anything here
         pass
 
     # Puback callback
     def customPubackCallback(self,mid):
-        #You don't need to write anything here
         pass
 
 
     def publish(self):
-        #TODO4: fill in this function for your publish
+        #Publish data to topic
         self.client.connect()
         if int(self.device_id) % 2 == 0: #if device id is even, make subscriber
             self.client.subscribeAsync("Test/topic1", 0, ackCallback=self.customSubackCallback)
         else: #if device id is odd, make publisher
             self.client.publishAsync("Test/topic1", "Hello from Vehicle_{}".format(self.device_id), 0, ackCallback=self.customPubackCallback)
 
-
-
-# Don't change the code below
 print("wait")
 lock = Lock()
-data = []
-for i in range(5):
-    a = pd.read_csv(data_path.format(i))
-    data.append(a)
 
 clients = []
 for device_id in range(device_st, device_end):
