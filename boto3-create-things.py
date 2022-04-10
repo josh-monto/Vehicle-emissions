@@ -3,8 +3,6 @@
 import boto3
 
 import json
-################################################### Create random name for things
-import random
 import string
 
 import csv
