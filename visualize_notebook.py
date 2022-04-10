@@ -11,8 +11,6 @@ dataset = "dataset_2"
 dataset_url = client.get_dataset_content(datasetName = dataset)['entries'][0]['dataURI']
 data = pd.read_csv(dataset_url)
 print(data)
-x=[1,2,3,4,5,6,7,8]
-y=[2,4,6,8,10,12,14,16]
 plt.plot(data["hue"])
 plt.title("Hue")
 plt.show()
