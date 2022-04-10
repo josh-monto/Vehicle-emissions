@@ -1,3 +1,4 @@
+#visualize_notebook.py
 # Part 3 Visualization code
 import boto3
 import pandas as pd
