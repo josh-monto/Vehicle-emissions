@@ -172,6 +172,7 @@ time.sleep(2)
 
 start = time.time()
 
+#Modified loop to publish elapsed time from local device to IoT console
 while True:
     if args.mode == 'both' or args.mode == 'publish':
         current = time.time() - start
