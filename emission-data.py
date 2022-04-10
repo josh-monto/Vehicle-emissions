@@ -1,4 +1,4 @@
-#Code responsible for importing vehicle data, publishing all CO2 data to topic,
+#Part 2 code responsible for importing vehicle data, publishing all CO2 data to topic,
 #and subscribing to appropriate topics to receive max CO2 value from lambda function
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 import time
